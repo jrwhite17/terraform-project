@@ -23,7 +23,7 @@ Module aws-alb | **Input from static developer_ip** located in Terragrunt terrag
 See terraform and terragrunt directories and more detailed information below.<br />
 **Note:** The **generic-random module** generates a **random deployment_id** for the terraform resources and **random_password** for the database.<br />
 The **deployment_id** keeps terraform resource names unique, allowing for multiple deployments in the development environment.<br />
-This module is intended to be generic as it's outputs **deployment_id** and **random_password** could be use for other environment specific modules (such as Azure, GCP, VMware, etc.)<br />
+This module is intended to be generic as it's outputs **deployment_id** and **random_password** could be used for other environment specific modules (such as Azure, GCP, VMware, etc.)<br />
 
 2.	**DRY code and achieve maximum reusability.**<br />
 See terraform and terragrunt directories. Terragrunt (a wrapper around Terraform) is used to abstract the terraform modules and provide environment specific characteristics for each targeted environment (development, test and production).<br />
