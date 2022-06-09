@@ -45,7 +45,7 @@ Using a coding/scripting language, we could write tests to validate the end stat
 See terragrunt directory.
 
 5.	**Build a CI pipeline that will allow you to target AWS account**<br />
-Before building the CI pipelines we need to understand the security and compliance posture of the project. We also need to determine the targeted environment or environment(s).<br />
+Before building the CI pipelines we need to understand the security and compliance posture of the project. We also need to determine the targeted environment(s).<br />
 We also need to develop a deployment strategy that promotes the project through the various environments (development, test and production).<br />
 Using Git Branching, we can develop a deployment strategy that accommodates the application/project's new release maturity.<br />
 <br />For Example:
