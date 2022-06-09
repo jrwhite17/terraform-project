@@ -19,15 +19,15 @@ Module aws-ec2 | Input from aws-alb security group id (this security group id wi
 Module aws-alb | Input from static developer_ip located in Terragrunt terragrunt.hcl
 
 ### Goals
-1.	**Folder structure and skeleton. Perfection is not necessary.**
+1.	**Folder structure and skeleton. Perfection is not necessary.**<br />
 See terraform and terragrunt directories and more detailed information below.
 
-2.	**DRY code and achieve maximum reusability.**
+2.	**DRY code and achieve maximum reusability.**<br />
 See terraform and terragrunt directories. Terragrunt (a wrapper around Terraform) is used to abstract the terraform modules and provide environment specific characteristics for each targeted environment (development, test and production).
 An example of this can be found in the /terrafrom/terragrunt directory. The environment folder structure contains AWS Account -> AWS Region -> Specific Environment Configuration.
 Terragrunt will orchestrate environment specific inputs and dependencies between the Terraform modules (located in the /terraform/modules directory).
 
-3.	**List of tools to validate terraform code**
+3.	**List of tools to validate terraform code**<br />
 - Visual Studio Code HashiCorp Terraform Extension
 This plugin provides syntax highlighting and autocompletion for the Visual Studio Code IDE. This is very helpful for local development activities.
 - Terragrunt Mock Outputs
@@ -37,10 +37,10 @@ This Linter provides a frameworks that alerts on possible errors (like illegal t
 - Python/Bash/Other Scripting
 Using a coding/scripting language, we could write tests to validate the end state of the terraform deployment. We could check for characteristics like appropriate ports being accessible on the RDS isntance or network traffic is accessible form the ALB.
 
-4.	**Dev/Test and Prod Deployment folder structure.**
+4.	**Dev/Test and Prod Deployment folder structure.**<br />
 See terragrunt directory.
 
-5.	**Build a CI pipeline that will allow you to target AWS account**
+5.	**Build a CI pipeline that will allow you to target AWS account**<br />
 Before building the CI pipelines we need to understand the security and compliance posture of the project. We also need to determine the targeted environment or environment(s).
 We also need to develop a deployment strategy that promotes the project through the various environments (development, test and production).
 Using Git Branching, we can develop a deployment strategy that accommodates the application/project's new release maturity.
@@ -50,8 +50,8 @@ Using Git Branching, we can develop a deployment strategy that accommodates the 
     - Feature3 (environment target: development)
     - Release3 (environment target: test)
     - Master (environment target: production)
-    with.. Feature1 (development) -> Release3 (test) -> Master (production)
-Depending on the scope of the branch, the target environment changes.
+    <br />with.. Feature1 (development) -> Release3 (test) -> Master (production)
+<br />Depending on the scope of the branch, the target environment changes.
 
 After this deployment strategy has been developed, we can create logic for the CI pipeline to retrieve the appropriate authentication method for manipulating the targeted environment.
 
