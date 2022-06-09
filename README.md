@@ -61,11 +61,13 @@ Using Git Branching, we can develop a deployment strategy that accommodates the 
 After this deployment strategy has been developed, we can create logic for the CI pipeline to retrieve the appropriate authentication method for manipulating the targeted environment.<br />
 
 Assuming the security and compliance posture of this project is minimal, I would recommend using GitHub actions as the CI pipeline orchestration tool/service.<br />
-GitHub actions has a large collection of workflow steps that are supported and mainted by both the open source and commercial vendor communities. For example: HashiCorp maintains many GitHub actions for working with Terraform.<br />
+GitHub actions has a large collection of workflow steps that are supported and maintained by both the open source and commercial vendor communities.<br />
+For example: HashiCorp maintains many GitHub actions for working with Terraform.<br />
 GitHub also offers a native solution for authenticating with Amazon Web Services using OpenID Connect. This is very beneficial to our use case since our targeted environment is AWS and we wouldn't have to worry about storing AWS credentials as long-lived GitHub secrets.<br />
 
-We also need to determine how long our development deployments will live. Lets assume that we have automated validation and acceptance testing for the post deployment. With this being the case, we will terminate the terraform resources after validating and acceptance testing has been executed.<br />
-Of course, we could always leave the terraform resources up and running for manual validation and acceptance testing. Note: If we were to leave the terraform resources up and running, this will increase the Cloud expenses.<br />
+We also need to determine how long our development deployments will live. Lets assume that we have automated validation and acceptance testing for post deployment. With this being the case, we will terminate the terraform resources after validation and acceptance testing have been executed.<br />
+Of course, we could always leave the terraform resources up and running for manual validation and acceptance testing.<br />
+**Note:** If we were to leave the terraform resources up and running, this will increase the Cloud expenses.<br />
 
 **The basic workflow of the pipeline:**<br />
 **Build** - Lint the Terraform Code, Execute a Terragrunt/Terraform Plan<br />
@@ -73,7 +75,7 @@ Of course, we could always leave the terraform resources up and running for manu
 **Test** - Execute Validation and Acceptance Tests<br />
 **Clean Up** - Terragrunt/Terraform Destroy<br />
 
-If we have enough trust in our validation and acceptance tests, we could automate promotion from:<br />
+If we have enough trust in our validation and acceptance tests, we could automate the project's promotion from:<br />
 feature -> release -> master branches.<br />
 
 If there are security concerns about using GitHub actions as our pipeline orchestration tool, we could look at some of the native AWS services to orchestrate our CI pipeline.<br />
