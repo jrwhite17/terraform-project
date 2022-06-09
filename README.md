@@ -21,10 +21,13 @@ Module aws-alb | Input from static developer_ip located in Terragrunt terragrunt
 ### Goals
 1.	**Folder structure and skeleton. Perfection is not necessary.**<br />
 See terraform and terragrunt directories and more detailed information below.
+**Note:** The generic-random module generates a random deployment_id for the terraform resources and random_password for the database.<br />
+The deployment_id keeps terraform resource names unique, allowing for multiple deployments in the development environment.<br />
+This module is intended to be generic as it's outputs deployment_id and random_password could be use for other environment specific modules (such as Azure, GCP, VMware, etc.)<br />
 
 2.	**DRY code and achieve maximum reusability.**<br />
-See terraform and terragrunt directories. Terragrunt (a wrapper around Terraform) is used to abstract the terraform modules and provide environment specific characteristics for each targeted environment (development, test and production).
-An example of this can be found in the /terrafrom/terragrunt directory. The environment folder structure contains AWS Account -> AWS Region -> Specific Environment Configuration.
+See terraform and terragrunt directories. Terragrunt (a wrapper around Terraform) is used to abstract the terraform modules and provide environment specific characteristics for each targeted environment (development, test and production).<br />
+An example of this can be found in the /terrafrom/terragrunt directory. The environment folder structure contains AWS Account -> AWS Region -> Specific Environment Configuration.<br />
 Terragrunt will orchestrate environment specific inputs and dependencies between the Terraform modules (located in the /terraform/modules directory).
 
 3.	**List of tools to validate terraform code**<br />
@@ -41,9 +44,9 @@ Using a coding/scripting language, we could write tests to validate the end stat
 See terragrunt directory.
 
 5.	**Build a CI pipeline that will allow you to target AWS account**<br />
-Before building the CI pipelines we need to understand the security and compliance posture of the project. We also need to determine the targeted environment or environment(s).
-We also need to develop a deployment strategy that promotes the project through the various environments (development, test and production).
-Using Git Branching, we can develop a deployment strategy that accommodates the application/project's new release maturity.
+Before building the CI pipelines we need to understand the security and compliance posture of the project. We also need to determine the targeted environment or environment(s).<br />
+We also need to develop a deployment strategy that promotes the project through the various environments (development, test and production).<br />
+Using Git Branching, we can develop a deployment strategy that accommodates the application/project's new release maturity.<br />
 <br />For Example:
     - Feature1 (environment target: development)
     - Feature2 (environment target: development)
@@ -53,24 +56,24 @@ Using Git Branching, we can develop a deployment strategy that accommodates the 
     <br />with.. Feature1 (development) -> Release3 (test) -> Master (production)
 <br />Depending on the scope of the branch, the target environment changes.
 
-After this deployment strategy has been developed, we can create logic for the CI pipeline to retrieve the appropriate authentication method for manipulating the targeted environment.
+After this deployment strategy has been developed, we can create logic for the CI pipeline to retrieve the appropriate authentication method for manipulating the targeted environment.<br />
 
-Assuming the security and compliance posture of this project is minimal, I would recommend using GitHub actions as the CI pipeline orchestration tool/service.
-GitHub actions has a large collection of workflow steps that are supported and mainted by both the open source and commercial vendor communities. For example: HashiCorp maintains many GitHub actions for working with Terraform.
-GitHub also offers a native solution for authenticating with Amazon Web Services using OpenID Connect. This is very beneficial to our use case since our targeted environment is AWS and we wouldn't have to worry about storing AWS credentials as long-lived GitHub secrets.
+Assuming the security and compliance posture of this project is minimal, I would recommend using GitHub actions as the CI pipeline orchestration tool/service.<br />
+GitHub actions has a large collection of workflow steps that are supported and mainted by both the open source and commercial vendor communities. For example: HashiCorp maintains many GitHub actions for working with Terraform.<br />
+GitHub also offers a native solution for authenticating with Amazon Web Services using OpenID Connect. This is very beneficial to our use case since our targeted environment is AWS and we wouldn't have to worry about storing AWS credentials as long-lived GitHub secrets.<br />
 
-We also need to determine how long our development deployments will live. Lets assume that we have automated validation and acceptance testing for the post deployment. With this being the case, we will terminate the terraform resources after validating and acceptance testing has been executed.
-Of course, we could always leave the terraform resources up and running for manual validation and acceptance testing. Note: If we were to leave the terraform resources up and running, this will increase the Cloud expenses.
+We also need to determine how long our development deployments will live. Lets assume that we have automated validation and acceptance testing for the post deployment. With this being the case, we will terminate the terraform resources after validating and acceptance testing has been executed.<br />
+Of course, we could always leave the terraform resources up and running for manual validation and acceptance testing. Note: If we were to leave the terraform resources up and running, this will increase the Cloud expenses.<br />
 
-The basic workflow of the pipeline::
-Build - Lint the Terraform Code, Execute a Terragrunt/Terraform Plan
-Deploy -  Execute a Terragrunt/Terraform Deploy
-Test - Execute Validation and Acceptance Tests
-Clean Up - Terragrunt/Terraform Destroy
+The basic workflow of the pipeline:<br />
+**Build** - Lint the Terraform Code, Execute a Terragrunt/Terraform Plan<br />
+**Deploy** -  Execute a Terragrunt/Terraform Deploy<br />
+**Test** - Execute Validation and Acceptance Tests<br />
+**Clean Up** - Terragrunt/Terraform Destroy<br />
 
-If we have enough trust in our validation and acceptance tests, we could automate promotion from feature -> release -> master branches.
+If we have enough trust in our validation and acceptance tests, we could automate promotion from feature -> release -> master branches.<br />
 
-If there are security concerns about using GitHub actions as our pipeline orchestration tool, we could look at some of the native AWS services to orchestrate our CI pipeline.
+If there are security concerns about using GitHub actions as our pipeline orchestration tool, we could look at some of the native AWS services to orchestrate our CI pipeline.<br />
 AWS offers:
 - AWS CodeCommit - Source code repository
 - AWS CodeBuild - Compiles code and executes tests
