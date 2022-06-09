@@ -4,19 +4,19 @@ Module aws-s3
 2.	**RDS Security Group**<br />
 Module aws-rds
 3.	**MySQL RDS in a Private subnet**<br />
-Module aws-rds | Input fromt static private_subnet_ids located in Terragrunt env.hcl
+Module aws-rds | **Input from static private_subnet_ids** located in Terragrunt env.hcl
 4.	**EC2 Security Group**<br />
 Module aws-ec2
 5.	**EC2 in a Private Subnet**<br />
-Module aws-ec2 | Input from static private_subnet_ids located in Terragrunt env.hcl
+Module aws-ec2 | **Input from static private_subnet_ids** located in Terragrunt env.hcl
 6.	**EC2 should be able to talk to MySQL**<br />
-Module aws-rds | Input from aws-ec2.private_ip for RDS Security Group Ingress Traffic
+Module aws-rds | **Input from aws-ec2.private_ip** for RDS Security Group Ingress Traffic
 7.	**ALB that uses ACM for TLS certs.**<br />
 Module aws-alb
 8.	**EC2 should only allow traffic from ACM.** (Should this be ALB - and not ACM?)<br />
-Module aws-ec2 | Input from aws-alb security group id (this security group id will be attached to ec2 and and alb and only allow traffic to itself)
+Module aws-ec2 | **Input from aws-alb.security_group.id** (this security group id will be attached to ec2 and and alb and only allow traffic to itself)
 9.	**ELB should only allow access from your IP.**<br />
-Module aws-alb | Input from static developer_ip located in Terragrunt terragrunt.hcl
+Module aws-alb | **Input from static developer_ip** located in Terragrunt terragrunt.hcl
 
 ### Goals
 1.	**Folder structure and skeleton. Perfection is not necessary.**<br />
