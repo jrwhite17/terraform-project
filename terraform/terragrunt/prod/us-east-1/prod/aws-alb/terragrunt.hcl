@@ -38,4 +38,5 @@ inputs = {
   private_subnet_ids = dependency.saf-tenant-net.outputs.private_subnet_ids
   addl_alb_sg_ids    = [dependency.saf-tenant-security-groups.outputs.SafHTTPCommsSG_id]
   aws_region         = local.aws_region
+  developer_ip       = local.developer_ip
 }

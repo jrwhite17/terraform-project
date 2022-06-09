@@ -1,1 +1,2 @@
-some_var: "some_value"
+#IP Address of the Developers Workstaiton
+developer_ip: "192.168.1.1"

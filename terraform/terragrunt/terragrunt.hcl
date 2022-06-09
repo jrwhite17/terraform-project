@@ -15,6 +15,9 @@ locals {
   # Extract the variables we need for easy access
   aws_region   = local.region_vars.locals.aws_region
   account_name = local.account_vars.locals.account_name
+
+  # My IP
+  developer_ip = "192.168.1.1"
 }
 
 # Configure Terragrunt to automatically store tfstate files in an S3 bucket
