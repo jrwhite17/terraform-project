@@ -1,33 +1,33 @@
 # terraform-project
-1.	S3 Bucket with SSE Enabled.<br />
+1.	**S3 Bucket with SSE Enabled.**<br />
 Module aws-s3
-2.	RDS Security Group<br />
+2.	**RDS Security Group**<br />
 Module aws-rds
-3.	MySQL RDS in a Private subnet<br />
+3.	**MySQL RDS in a Private subnet**<br />
 Module aws-rds | Input fromt static private_subnet_ids located in Terragrunt env.hcl
-4.	EC2 Security Group<br />
+4.	**EC2 Security Group**<br />
 Module aws-ec2
-5.	EC2 in a Private Subnet<br />
+5.	**EC2 in a Private Subnet**<br />
 Module aws-ec2 | Input from static private_subnet_ids located in Terragrunt env.hcl
-6.	EC2 should be able to talk to MySQL<br />
+6.	**EC2 should be able to talk to MySQL**<br />
 Module aws-rds | Input from aws-ec2.private_ip for RDS Security Group Ingress Traffic
-7.	ALB that uses ACM for TLS certs.<br />
+7.	**ALB that uses ACM for TLS certs.**<br />
 Module aws-alb
-8.	EC2 should only allow traffic from ACM. (Should this be ALB - and not ACM?)<br />
+8.	**EC2 should only allow traffic from ACM.** (Should this be ALB - and not ACM?)<br />
 Module aws-ec2 | Input from aws-alb security group id (this security group id will be attached to ec2 and and alb and only allow traffic to itself)
-9.	ELB should only allow access from your IP.<br />
+9.	**ELB should only allow access from your IP.**<br />
 Module aws-alb | Input from static developer_ip located in Terragrunt terragrunt.hcl
 
 ### Goals
-1.	Folder structure and skeleton. Perfection is not necessary.
+1.	**Folder structure and skeleton. Perfection is not necessary.**
 See terraform and terragrunt directories and more detailed information below.
 
-2.	DRY code and achieve maximum reusability.
+2.	**DRY code and achieve maximum reusability.**
 See terraform and terragrunt directories. Terragrunt (a wrapper around Terraform) is used to abstract the terraform modules and provide environment specific characteristics for each targeted environment (development, test and production).
 An example of this can be found in the /terrafrom/terragrunt directory. The environment folder structure contains AWS Account -> AWS Region -> Specific Environment Configuration.
 Terragrunt will orchestrate environment specific inputs and dependencies between the Terraform modules (located in the /terraform/modules directory).
 
-3.	List of tools to validate terraform code
+3.	**List of tools to validate terraform code**
 - Visual Studio Code HashiCorp Terraform Extension
 This plugin provides syntax highlighting and autocompletion for the Visual Studio Code IDE. This is very helpful for local development activities.
 - Terragrunt Mock Outputs
@@ -37,10 +37,10 @@ This Linter provides a frameworks that alerts on possible errors (like illegal t
 - Python/Bash/Other Scripting
 Using a coding/scripting language, we could write tests to validate the end state of the terraform deployment. We could check for characteristics like appropriate ports being accessible on the RDS isntance or network traffic is accessible form the ALB.
 
-4.	Dev/Test and Prod Deployment folder structure.
+4.	**Dev/Test and Prod Deployment folder structure.**
 See terragrunt directory.
 
-5.	Build a CI pipeline that will allow you to target AWS account
+5.	**Build a CI pipeline that will allow you to target AWS account**
 Before building the CI pipelines we need to understand the security and compliance posture of the project. We also need to determine the targeted environment or environment(s).
 We also need to develop a deployment strategy that promotes the project through the various environments (development, test and production).
 Using Git Branching, we can develop a deployment strategy that accommodates the application/project's new release maturity.
