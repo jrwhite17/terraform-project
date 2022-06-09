@@ -1,21 +1,21 @@
 # terraform-project
-1.	S3 Bucket with SSE Enabled.
+1.	S3 Bucket with SSE Enabled.<br />
 Module aws-s3
-2.	RDS Security Group
+2.	RDS Security Group<br />
 Module aws-rds
-3.	MySQL RDS in a Private subnet
+3.	MySQL RDS in a Private subnet<br />
 Module aws-rds | Input fromt static private_subnet_ids located in Terragrunt env.hcl
-4.	EC2 Security Group
+4.	EC2 Security Group<br />
 Module aws-ec2
-5.	EC2 in a Private Subnet
+5.	EC2 in a Private Subnet<br />
 Module aws-ec2 | Input from static private_subnet_ids located in Terragrunt env.hcl
-6.	EC2 should be able to talk to MySQL
+6.	EC2 should be able to talk to MySQL<br />
 Module aws-rds | Input from aws-ec2.private_ip for RDS Security Group Ingress Traffic
-7.	ALB that uses ACM for TLS certs.
+7.	ALB that uses ACM for TLS certs.<br />
 Module aws-alb
-8.	EC2 should only allow traffic from ACM. (Should this be ALB - and not ACM?)
+8.	EC2 should only allow traffic from ACM. (Should this be ALB - and not ACM?)<br />
 Module aws-ec2 | Input from aws-alb security group id (this security group id will be attached to ec2 and and alb and only allow traffic to itself)
-9.	ELB should only allow access from your IP.
+9.	ELB should only allow access from your IP.<br />
 Module aws-alb | Input from static developer_ip located in Terragrunt terragrunt.hcl
 
 ### Goals
@@ -44,7 +44,7 @@ See terragrunt directory.
 Before building the CI pipelines we need to understand the security and compliance posture of the project. We also need to determine the targeted environment or environment(s).
 We also need to develop a deployment strategy that promotes the project through the various environments (development, test and production).
 Using Git Branching, we can develop a deployment strategy that accommodates the application/project's new release maturity.
-For Example:
+<br />For Example:
     - Feature1 (environment target: development)
     - Feature2 (environment target: development)
     - Feature3 (environment target: development)
