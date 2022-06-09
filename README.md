@@ -28,13 +28,13 @@ An example of this can be found in the /terrafrom/terragrunt directory. The envi
 Terragrunt will orchestrate environment specific inputs and dependencies between the Terraform modules (located in the /terraform/modules directory).
 
 3.	**List of tools to validate terraform code**<br />
-- Visual Studio Code HashiCorp Terraform Extension
+- Visual Studio Code HashiCorp Terraform Extension<br />
 This plugin provides syntax highlighting and autocompletion for the Visual Studio Code IDE. This is very helpful for local development activities.
-- Terragrunt Mock Outputs
+- Terragrunt Mock Outputs<br />
 Terragrunt offers a feature that allows users to mock outputs for executing the "Terraform Plan" task. This is a great method for validating input depenedencies between Terraform modules.
-- TFLint (is a Pluggable Terraform Linter)
+- TFLint (is a Pluggable Terraform Linter)<br />
 This Linter provides a frameworks that alerts on possible errors (like illegal types for cloud providers (AWS/Azure/GCP)), warns about deprecated sytax or unused declarations and enforces best practices and naming conventions.
-- Python/Bash/Other Scripting
+- Python/Bash/Other Scripting<br />
 Using a coding/scripting language, we could write tests to validate the end state of the terraform deployment. We could check for characteristics like appropriate ports being accessible on the RDS isntance or network traffic is accessible form the ALB.
 
 4.	**Dev/Test and Prod Deployment folder structure.**<br />
